@@ -6,8 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
-
-public class FallingObject : MonoBehaviour
+public class CollectedWater : MonoBehaviour
 {
 
     private void OnCollisionEnter2D(Collision2D collision)

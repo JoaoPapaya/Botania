@@ -7,7 +7,6 @@ public class NextScene : MonoBehaviour
 {
     public string NextSceneName;
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GoToNextScene();

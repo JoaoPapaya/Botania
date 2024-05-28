@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
+
     private float horizontal;
     public float speed = 8f;
     public float jumpingPower = 10f;
     private bool isFacingRight = true;
 
-    public static PlayerMovement Instance;
-
     public int H2O;
     public int CO2;
-    public int energia = 20;
+    public int energia;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -32,11 +34,19 @@ public class PlayerMovement : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
-
-
+    private void Start()
+    {
+        energia = 10;
+    }
     void Update()
     {
+
+        if (energia < 1) 
+        {
+            SceneManager.LoadScene("Limbo");
+        }
+
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -85,10 +95,25 @@ public class PlayerMovement : MonoBehaviour
         {
             CO2++;
         }
+    }
 
-        if (collision.gameObject.CompareTag("PreBoss"))
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("EvilDoor"))
         {
             energia = energia - 5;
+        }
+
+        if (collision.gameObject.CompareTag("Light"))
+        {
+            if (H2O > 9 && CO2 > 9)
+            {
+                energia = energia + 5;
+                H2O = H2O - 10;
+                CO2 = CO2 - 10;
+
+            }
         }
     }
 

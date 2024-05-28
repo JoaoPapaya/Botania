@@ -7,6 +7,8 @@ TagManager:
   - H2O
   - CO2
   - PreBoss
+  - EvilDoor
+  - Light
   layers:
   - Default
   - TransparentFX

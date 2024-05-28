@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8709112277929023566}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   jumpingPower: 10
+  H2O: 0
+  CO2: 0
+  energia: 20
   rb: {fileID: 971500591841143320}
   groundCheck: {fileID: 3410006732488788738}
   groundLayer:

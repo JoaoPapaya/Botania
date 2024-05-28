@@ -7,9 +7,6 @@ public class Manager : MonoBehaviour
 
     public static Manager Instance;
 
-    public int water;
-    public int carbon;
-
     private void Awake()
     {
 
@@ -22,5 +19,4 @@ public class Manager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
 }
