@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Events;
 
 
 public class FallingObject : MonoBehaviour
