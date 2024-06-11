@@ -6,42 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement Instance;
+    public GameObject StatsManagerObj;
+    public StatsManager StatsManager;
 
     private float horizontal;
     public float speed = 8f;
     public float jumpingPower = 10f;
     private bool isFacingRight = true;
 
-    public int H2O;
-    public int CO2;
-    public int energia;
-
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-    private void Awake()
-    {
 
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        energia = 10;
-    }
     void Update()
     {
 
-        if (energia < 1) 
+        StatsManagerObj = GameObject.FindWithTag("StatsManager");
+        StatsManager = StatsManagerObj.GetComponent<StatsManager>();
+
+        if (StatsManager.energy < 1) 
         {
             SceneManager.LoadScene("Limbo");
         }
@@ -88,12 +72,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("H2O"))
         {
-            H2O++;
+            StatsManager.water++;
         }
 
         if (collision.gameObject.CompareTag("CO2"))
         {
-            CO2++;
+            StatsManager.carbon++;
         }
     }
 
@@ -102,16 +86,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("EvilDoor"))
         {
-            energia = energia - 5;
+            StatsManager.energy = StatsManager.energy - 5;
         }
 
         if (collision.gameObject.CompareTag("Light"))
         {
-            if (H2O > 9 && CO2 > 9)
+            if (StatsManager.water > 9 && StatsManager.carbon > 9)
             {
-                energia = energia + 5;
-                H2O = H2O - 10;
-                CO2 = CO2 - 10;
+                StatsManager.energy = StatsManager.energy + 5;
+                StatsManager.water = StatsManager.water - 10;
+                StatsManager.carbon = StatsManager.carbon - 10;
 
             }
         }

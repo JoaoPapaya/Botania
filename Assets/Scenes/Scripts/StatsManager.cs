@@ -21,6 +21,13 @@ public class StatsManager : MonoBehaviour
 
     public static StatsManager Instance;
 
+    private void Start()
+    {
+        water = 0; 
+        carbon = 0;
+        energy = 10;
+    }
+
     private void Awake()
     {
 
@@ -36,10 +43,6 @@ public class StatsManager : MonoBehaviour
 
     void Update()
     {
-        water = stats.H2O;
-        carbon = stats.CO2;
-        energy = stats.energia;
-
         h2o.text = "H2O: " + water.ToString();
         co2.text = "CO2: " + carbon.ToString();
         atp.text = "Energia: " + energy.ToString();
